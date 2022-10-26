@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# # importing libraries
+
+# In[ ]:
 
 
 import os
@@ -27,6 +29,8 @@ from torch.utils.data import DataLoader
 from torchvision.datasets import ImageFolder
 
 
+# # transforming images
+
 # In[62]:
 
 
@@ -36,6 +40,8 @@ transform = transforms.Compose(
      
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
+
+# # importing dataset into test data and train data
 
 # In[63]:
 
@@ -56,6 +62,8 @@ testloader=DataLoader(testdata,batch_size=30,shuffle=True)
 
 classes=('cat','dog')
 
+
+# # pytorch model
 
 # In[80]:
 
@@ -112,6 +120,8 @@ class VGG16_NET(nn.Module):
 net=VGG16_NET()
 
 
+# # checking the output for better understanding
+
 # In[81]:
 
 
@@ -122,6 +132,8 @@ print(output)
 print(output.argmax())
 print(label)
 
+
+# # check availability of GPU
 
 # In[82]:
 
@@ -135,6 +147,8 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(device)
 
 
+# # loss function and optimaizer
+
 # In[90]:
 
 
@@ -143,6 +157,8 @@ import torch.optim as optim
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=0.001)
 
+
+# # training the model
 
 # In[91]:
 
@@ -171,6 +187,14 @@ for epoch in range(2):  # loop over the dataset multiple times
 
 print('Finished Training')
 
+
+# In[ ]:
+
+
+
+
+
+# # predection
 
 # In[92]:
 
